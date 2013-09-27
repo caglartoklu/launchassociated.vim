@@ -1,6 +1,10 @@
-" launchassociated.vim
-" https://github.com/caglartoklu/launchassociated.vim
-
+" -*- vim -*-
+" FILE: launchassociated.vim
+" PLUGINTYPE: plugin
+" DESCRIPTION: Launches current file with the associated program.
+" HOMEPAGE: https://github.com/caglartoklu/launchassociated.vim
+" LICENSE: https://github.com/caglartoklu/launchassociated.vim/blob/master/LICENSE
+" AUTHOR: caglartoklu
 
 if exists('g:loaded_launchassociated') || &cp
     " If it already loaded, do not load it again.
