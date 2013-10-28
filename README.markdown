@@ -9,6 +9,10 @@ It can be used on any file type, such as
 `.xml`, `.html`, `.java` or even `.png`,
 anything that is associated with a program.
 
+Home page: https://github.com/caglartoklu/launchassociated.vim
+
+Vim.org page: http://www.vim.org/scripts/script.php?script_id=4755
+
 ## Installation
 
 For [Vundle](https://github.com/gmarik/vundle) users:
