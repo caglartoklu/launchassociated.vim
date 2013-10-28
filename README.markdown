@@ -9,7 +9,6 @@ It can be used on any file type, such as
 `.xml`, `.html`, `.java` or even `.png`,
 anything that is associated with a program.
 
-
 ## Installation
 
 For [Vundle](https://github.com/gmarik/vundle) users:
@@ -28,8 +27,10 @@ For all other users, simply drop the `launchassociated.vim` file to your
 ## Supported Environments
 - Tested on Windows 7.
 
-It should work on Mac OS X and most of the POSIX systems, but not tested yet.
-Tests on these (and any other) operating systems is apprecieated.
+It should work on Mac OS X and most of the
+[POSIX](https://en.wikipedia.org/wiki/Posix)
+systems, but not tested yet.
+Tests on these (and any other) operating systems is appreciated.
 
 
 ## Usage
@@ -54,7 +55,7 @@ None.
 
 ## License
 Licensed with 2-clause license ("Simplified BSD License" or "FreeBSD License").
-See the LICENSE file.
+See the [LICENSE](https://github.com/caglartoklu/launchassociated.vim/blob/master/LICENSE) file.
 
 
 ## Contact Info
@@ -62,3 +63,4 @@ You can find me on
 [Google+](https://plus.google.com/108566243864924912767/posts)
 
 Feel free to send bug reports, or ask questions.
+
