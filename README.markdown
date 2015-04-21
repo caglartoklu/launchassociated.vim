@@ -17,7 +17,7 @@ Vim.org page: http://www.vim.org/scripts/script.php?script_id=4755
 
 For [Vundle](https://github.com/gmarik/vundle) users:
 
-    Bundle 'caglartoklu/launchassociated.vim'
+    Plugin 'caglartoklu/launchassociated.vim'
 
 For [Pathogen](https://github.com/tpope/vim-pathogen) users:
 
@@ -29,22 +29,22 @@ For all other users, simply drop the `launchassociated.vim` file to your
 
 
 ## Supported Environments
-- Tested on Windows 7.
-
-It should work on Mac OS X and most of the
-[POSIX](https://en.wikipedia.org/wiki/Posix)
-systems, but not tested yet.
-Tests on these (and any other) operating systems is appreciated.
+- Tested on Windows 7, Windows 8.x.
 
 
 ## Usage
-This plugin defines a single command:
+This plugin defines two commands:
 
 - `LaunchAssociated`
    Launches currently opened file using the associated program.
    If the buffer is empty, nothing will happen.
    The current contents of the buffer will not be used,
    only the file persisted on the file system will be used.
+
+- `SelectFileInFileManager`
+   Currently, only Windows is supported.
+   This command will launch the file manager (explorer.exe),
+   and the buffer will be selected by default.
 
 
 ## Configuration
@@ -54,7 +54,8 @@ None.
 ## To Do
 
 - `kde-open` or `gnome-open` on Linux derivatives (and FreeBSD)
-  instead of `xdg-open`
+  instead of `xdg-open` for `LaunchAssociated` command.
+- Ubuntu and Mac OS X support for `SelectFileInFileManager` command.
 
 
 ## License
@@ -67,4 +68,3 @@ You can find me on
 [Google+](https://plus.google.com/108566243864924912767/posts)
 
 Feel free to send bug reports, or ask questions.
-
