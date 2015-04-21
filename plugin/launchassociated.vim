@@ -6,8 +6,9 @@
 " LICENSE: https://github.com/caglartoklu/launchassociated.vim/blob/master/LICENSE
 " AUTHOR: caglartoklu
 
+
 if exists('g:loaded_launchassociated') || &cp
-    " If it already loaded, do not load it again.
+    " If it is already loaded, do not load it again.
     finish
 endif
 
@@ -61,6 +62,21 @@ function! s:LaunchAssociated(fileName)
 endfunction
 
 
+function! s:SelectFileInFileManager(fileName)
+    if s:Strip(a:fileName) != ''
+        let detectedOs = s:DetectOs()
+        if detectedOs == 'windows'
+            let cmd = 'explorer.exe /select, "' . a:fileName . '"'
+            let output = system(cmd)
+        else
+            echo 'currently, only Windows is supported for SelectFileInFileManager command'
+        endif
+    else
+        echo 'launchassociated.vim: open a file first'
+    endif
+endfunction
+
+
 " commands exposed
-command! -nargs=0 LaunchAssociated :
-    \call s:LaunchAssociated(expand("%:p"))
+command! -nargs=0 LaunchAssociated : call s:LaunchAssociated(expand("%:p"))
+command! -nargs=0 SelectFileInFileManager : call s:SelectFileInFileManager(expand("%:p"))
