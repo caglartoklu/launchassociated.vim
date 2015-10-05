@@ -8,13 +8,27 @@
 
 
 if exists('g:loaded_launchassociated') || &cp
-    " If it is already loaded, do not load it again.
+    " If it already loaded, do not load it again.
     finish
 endif
 
 
 " mark that plugin loaded
 let g:loaded_launchassociated = 1
+
+
+function! s:SetDefaultSettings()
+    " Sets the default settings for once.
+    " If the user does not load the settings in vimrc,
+    " these values will be used.
+
+    if !exists('g:launchassociated_special_launchers')
+        " the keys are filetypes, values are commands.
+        " there are specific placeholders, such as:
+        " ${bufferpath} : the full path to the buffer
+        let g:launchassociated_special_launchers = {}
+    endif
+endfunction
 
 
 function! s:DetectOs()
@@ -62,21 +76,49 @@ function! s:LaunchAssociated(fileName)
 endfunction
 
 
-function! s:SelectFileInFileManager(fileName)
-    if s:Strip(a:fileName) != ''
-        let detectedOs = s:DetectOs()
-        if detectedOs == 'windows'
-            let cmd = 'explorer.exe /select, "' . a:fileName . '"'
-            let output = system(cmd)
-        else
-            echo 'currently, only Windows is supported for SelectFileInFileManager command'
-        endif
+function! s:LaunchSpecial()
+    let fileName = escape(expand("%:p"), '\')
+    " let fileName = substitute(fileName, '\\', '\\\\', 'g')
+    if s:Strip(fileName) != ''
+        let cmd = g:launchassociated_special_launchers[&filetype]
+        let cmd = substitute(cmd, '{{bufferpath}}', fileName, 'g')
+        call system(cmd)
     else
         echo 'launchassociated.vim: open a file first'
     endif
 endfunction
 
 
+function! s:GetFileManager()
+    let result = ''
+
+    " TODO: 8 differentiate for various operating systems.
+
+    if s:DetectOs() == 'windows'
+        " for Windows, it is explorer.
+        let result = 'explorer'
+    endif
+
+    return result
+endfunction
+
+
+function! s:SelectFile()
+    let filePath = expand('%:p')
+
+    let fileManager = s:GetFileManager()
+    if fileManager == 'explorer'
+        " https://support.microsoft.com/en-us/kb/314853
+        " TODO: 5 shell escape to filePath
+        let cmd = 'explorer /select,"' . filePath . '"'
+    endif
+    let output = system(cmd)
+endfunction
+
+
 " commands exposed
 command! -nargs=0 LaunchAssociated : call s:LaunchAssociated(expand("%:p"))
-command! -nargs=0 SelectFileInFileManager : call s:SelectFileInFileManager(expand("%:p"))
+command! -nargs=0 LaunchSpecial : call s:LaunchSpecial()
+
+" command! -nargs=? SelectFile : call s:SelectFile(<q-args>)
+command! -nargs=0 SelectFile : call s:SelectFile()
